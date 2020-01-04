@@ -22,5 +22,12 @@ cfg.authToken = process.env.TWILIO_AUTH_TOKEN;
 cfg.twimlAppSid = process.env.TWILIO_TWIML_APP_SID;
 cfg.callerId = process.env.TWILIO_CALLER_ID;
 
+// Postgresql Local DB Credentials
+cfg.dbUser = process.env.POSTGRES_USERNAME;
+cfg.dbPassword = process.env.POSTGRES_PASSWORD;
+cfg.dbHost = process.env.POSTGRES_HOST;
+cfg.dbPort = process.env.POSTGRES_PORT;
+cfg.dbName = process.env.POSTGRES_DBNAME;
+
 // Export configuration object
 module.exports = cfg;
