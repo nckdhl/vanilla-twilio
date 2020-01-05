@@ -29,5 +29,8 @@ cfg.dbHost = process.env.POSTGRES_HOST;
 cfg.dbPort = process.env.POSTGRES_PORT;
 cfg.dbName = process.env.POSTGRES_DBNAME;
 
+// JWT Auth Secret Key
+cfg.JWTSecret = process.env.JWT_SECRET;
+
 // Export configuration object
 module.exports = cfg;

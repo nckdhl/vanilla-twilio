@@ -2,35 +2,26 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const corsHeader = require('./middleware/cors');
 
-const router = require('./src/router');
+const twilioRouter = require('./routes/twilioRouter');
+const authRouter = require('./routes/authRouter');
 
 // Create Express webapp
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
-// TODO change this middleware function to use cors package functionality
-app.use(function (req, res, next) {
+// TODO change this middleware function to use 
+// 3rd party cors package functionality
+app.use(corsHeader);
 
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'https://friendly-raman-a250a4.netlify.com');
+// Add Twilio routes
+app.use('/twilio', twilioRouter);
 
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  // Pass to next layer of middleware
-  next();
-});
-
-app.use(router);
+// Add authentication routes
+app.use('/auth', authRouter);
 
 // Create http server and run it
 const server = http.createServer(app);

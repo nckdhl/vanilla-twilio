@@ -1,4 +1,4 @@
-const { Client } = require('pg');
+const { Pool } = require('pg');
 const cfg = require('../../config');
 
 const credentials = {
@@ -9,6 +9,6 @@ const credentials = {
     port: cfg.dbPort,
 }
 
-const client = new Client(credentials);
+const pool = new Pool(credentials);
 
-module.exports = client;
+module.exports = pool;
