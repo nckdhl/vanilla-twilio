@@ -1,6 +1,6 @@
 const Router = require("express").Router;
 
-const { loginHandler, registerHandler } = require("./loginHandler");
+const { loginHandler, registerHandler } = require("./authHandler");
 const { registerValidation, loginValidation } = require("./../lib/validation");
 
 const router = new Router();

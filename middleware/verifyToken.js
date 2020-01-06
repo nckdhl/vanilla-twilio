@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const cfg = require('../config');
 
 module.exports = function auth(req, res, next) {
-    const token = req.header('auth-token');
+    const token = req.body.authToken;
     if (!token) return res.status(401).send('Access denied');
 
     try {
@@ -14,3 +14,5 @@ module.exports = function auth(req, res, next) {
 
     next();
 }
+
+///

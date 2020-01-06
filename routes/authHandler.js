@@ -1,10 +1,10 @@
 const db = require("./db/connect");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
-const cfg = require('./../config');
+const cfg = require('../config');
 
 exports.loginHandler = async function loginHandler(req) {
-  const queryText = "SELECT password, id FROM users where email = $1";
+  const queryText = "SELECT password, id, first_name FROM users where email = $1";
   const values = [req.body.email];
 
   let response = {
@@ -13,6 +13,8 @@ exports.loginHandler = async function loginHandler(req) {
     error: undefined,
     token: undefined
   };
+
+  //
 
   const client = await db.connect();
   try {
@@ -25,7 +27,8 @@ exports.loginHandler = async function loginHandler(req) {
         console.log("Valid password - user logged in");
         response.status = 200;
         response.message = "Valid password. Logged in.";
-        response.token = jwt.sign({ _id: result.rows[0].id }, cfg.JWTSecret);
+        let tokenProps = { _id: result.rows[0].id, _name: result.rows[0].first_name }
+        response.token = jwt.sign(tokenProps, cfg.JWTSecret);
       } else {
         console.log("Invalid password");
         response.status = 400;

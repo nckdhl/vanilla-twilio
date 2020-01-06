@@ -1,4 +1,5 @@
 const Router = require('express').Router;
+const twilio = require('twilio');
 
 const { tokenGenerator, voiceResponse } = require('./twilioHandler');
 const verify = require('./../middleware/verifyToken');
@@ -9,13 +10,20 @@ const router = new Router();
  * Generate a Capability Token for a Twilio Client user - it generates a random
  * username for the client requesting a token.
  */
-router.get('/token', verify, (req, res) => {
-  res.send(tokenGenerator());
+router.post('/token', verify, (req, res) => {
+  res.send(tokenGenerator(req));
 });
 
-router.post('/voice', verify, (req, res) => {
+router.post('/voice', twilio.webhook(), (req, res) => {
   res.set('Content-Type', 'text/xml');
-  res.send(voiceResponse(req.body.To));
+  res.send(voiceResponse(req));
+});
+
+////
+
+router.post('/incoming', twilio.webhook(), (req, res) => {
+  res.set('Content-Type', 'text/xml');
+  res.send(incomingResponse(req.body.To));
 });
 
 module.exports = router;
