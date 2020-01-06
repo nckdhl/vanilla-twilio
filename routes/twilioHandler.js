@@ -37,19 +37,13 @@ exports.voiceResponse = function voiceResponse(req) {
 
   if (isIncomingPhoneNumber(toNumber)) {
     const clientName = "Nick";
-    // Wrap the phone number or client name in the appropriate TwiML verb
-    // if is a valid phone number
-    //const attr = isAValidPhoneNumber(toNumber) ? 'number' : 'client';
-
     dial.client(clientName);
+    dial.number(+12896893069);
     console.log("Dialing client")
   } else if (isAValidPhoneNumber(toNumber)) {
     dial.number(toNumber);
     console.log("Dialing number")
-    ///
   }
-//
-//
   return twiml.toString();
 };
 
@@ -60,6 +54,17 @@ function isIncomingPhoneNumber(number) {
     return true;
     ////
   }
+}
+
+exports.forwardResponse = function forwardResponse(req) {
+  // const twiml = new VoiceResponse();
+
+  
+
+
+  // const dial = twiml.dial({
+  //   callerId: 
+  // });
 }
 
 /**

@@ -19,11 +19,9 @@ router.post('/voice', twilio.webhook(), (req, res) => {
   res.send(voiceResponse(req));
 });
 
-////
-
-router.post('/incoming', twilio.webhook(), (req, res) => {
-  res.set('Content-Type', 'text/xml');
-  res.send(incomingResponse(req.body.To));
-});
+// router.post('/forward', twilio.webhook(), (req, res) => {
+//   res.set('Content-Type', 'text/xml');
+//   res.send(forwardResponse(req));
+// });
 
 module.exports = router;
