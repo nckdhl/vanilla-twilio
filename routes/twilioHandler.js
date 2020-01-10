@@ -32,13 +32,18 @@ exports.voiceResponse = function voiceResponse(req) {
   const toNumber = req.body.To;
 
   const dial = twiml.dial({
-    callerId: config.callerId
+    callerId: config.callerId,
+    timeout: 20,
+    action: 'http://480f6f8d.ngrok.io/twilio/forward',
+    method: 'POST' 
   });
 
   if (isIncomingPhoneNumber(toNumber)) {
+    // first try to connect to browser client
     const clientName = "Nick";
     dial.client(clientName);
-    dial.number(+12896893069);
+    // then try to connect to forwarded number
+    //dial.number(+12896893069);
     console.log("Dialing client")
   } else if (isAValidPhoneNumber(toNumber)) {
     dial.number(toNumber);
@@ -57,14 +62,24 @@ function isIncomingPhoneNumber(number) {
 }
 
 exports.forwardResponse = function forwardResponse(req) {
-  // const twiml = new VoiceResponse();
-
   
+  const twiml = new VoiceResponse();
 
+  let caller;
 
-  // const dial = twiml.dial({
-  //   callerId: 
-  // });
+  if (req.body.From === "client:Nick") {
+    caller = config.callerId;
+  } else {
+    caller = req.body.From;
+  }
+
+  const dial = twiml.dial({
+    callerId: caller,
+  });
+
+  dial.number(+12896893069);
+
+  return twiml.toString();
 }
 
 /**
