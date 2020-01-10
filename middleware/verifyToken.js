@@ -9,11 +9,9 @@ module.exports = function auth(req, res, next) {
     if (!token) return res.status(401).send('Access denied');
 
     try {
-        console.log("Trying to verify");
         const verified = jwt.verify(token, cfg.JWTSecret);
-        console.log("Verified token");
         req.user = verified;
-        console.log(verified);
+        res.status(200).send(JSON.stringify({ success: "You're logged in."}));
     } catch (err) {
         res.status(400).send('Invalid Token. Try logging in again.');
     }
