@@ -47,6 +47,7 @@ exports.voiceResponse = function voiceResponse(req) {
     dial.number(toNumber);
     console.log("Dialing number")
   }
+  console.log(twiml.toString());
   return twiml.toString();
 };
 

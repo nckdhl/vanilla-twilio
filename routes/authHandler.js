@@ -61,7 +61,7 @@ exports.registerHandler = async function registerHandler(req) {
   let response = {
     status: 400, 
     message: "",
-    error: undefined
+    error: undefined  
   };
 
   let userExists = await checkUser(values.email);
