@@ -1,8 +1,8 @@
 {
-  "name": "client-quickstart-node",
+  "name": "vanilla-twilio",
   "private": true,
   "version": "1.0.0",
-  "description": "Quick Start application template for Twilio Client on Node.js",
+  "description": "Twilio VOIP Client on Node.js",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -21,7 +21,7 @@
     "time",
     "diggity"
   ],
-  "author": "Twilio Developer Education",
+  "author": "Nick Dahl",
   "license": "MIT",
   "engines": {
     "node": ">=8.x"
