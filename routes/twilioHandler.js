@@ -1,7 +1,5 @@
 const ClientCapability = require("twilio").jwt.ClientCapability;
 const VoiceResponse = require("twilio").twiml.VoiceResponse;
-
-const nameGenerator = require("../name_generator");
 const config = require("../config");
 
 exports.tokenGenerator = function tokenGenerator(req) {
