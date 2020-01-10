@@ -43,22 +43,4 @@ router.post("/login", async (req, res) => {
 // validation route
 router.post("/validation", verifyToken, (req, res) => {});
 
-// twilio authentication route
-router.post("/twilioaccount", verifyToken, async (req, res) => {
-  res.set("Content-Type", "application/json");
-  try {
-    const { error } = await twilioAuthenticate(req.body);
-    if (error) {
-      return res.status(401).send({ error: error.details[0].message });
-    }
-
-    const response = await insertTwilioCreds(req.body);
-
-    res.status(response.status).send(JSON.stringify(response));
-  } catch (err) {
-    console.log(err);
-    res.status(400).send(err);
-  }
-});
-
 module.exports = router;
