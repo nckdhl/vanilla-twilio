@@ -14,7 +14,7 @@ router.post('/token', verify, (req, res) => {
   res.send(tokenGenerator(req));
 });
 
-router.post('/voice', (req, res) => {
+router.post('/voice', twilio.webhook(), (req, res) => {
   res.set('Content-Type', 'text/xml');
   res.send(voiceResponse(req));
 });
