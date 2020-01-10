@@ -11,7 +11,7 @@ module.exports = function auth(req, res, next) {
     try {
         const verified = jwt.verify(token, cfg.JWTSecret);
         req.user = verified;
-        res.status(200).send(JSON.stringify({ success: "You're logged in."}));
+        req.user.loggedIn = true;
     } catch (err) {
         res.status(400).send('Invalid Token. Try logging in again.');
     }

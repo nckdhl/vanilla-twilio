@@ -41,6 +41,10 @@ router.post("/login", async (req, res) => {
 });
 
 // validation route
-router.post("/validation", verifyToken, (req, res) => {});
+router.post("/validation", verifyToken, (req, res) => {
+  if (req.user.loggedIn){
+    res.status(200).send(JSON.stringify({ success: "You're logged in."}));
+  }
+});
 
 module.exports = router;
