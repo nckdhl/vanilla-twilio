@@ -19,7 +19,7 @@ router.post('/voice', twilio.webhook({ validate: true }), (req, res) => {
   res.send(voiceResponse(req));
 });
 
-router.post('/forward', twilio.webhook({ validate: true }), (req, res) => {
+router.post('/forward', twilio.webhook( process.env.TWILIO_AUTH_TOKEN, { validate: true, url: 'https://vanilla-twilio.herokuapp.com/twilio/voice'}), (req, res) => {
   res.set('Content-Type', 'text/xml');
   //forwardResponse(req);
   res.send(forwardResponse(req));
