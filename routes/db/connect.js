@@ -2,11 +2,8 @@ const { Pool } = require('pg');
 const cfg = require('../../config');
 
 const credentials = {
-    user: cfg.dbUser,
-    host: cfg.dbHost,
-    database: cfg.dbName, 
-    password: cfg.dbPassword,
-    port: cfg.dbPort,
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
 }
 
 const pool = new Pool(credentials);
