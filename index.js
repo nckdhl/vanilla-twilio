@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'http://127.0.0.1:5500',
+  origin: 'https://friendly-raman-a250a4.netlify.com',
   credentials: true
 }
 
