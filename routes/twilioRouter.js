@@ -14,7 +14,7 @@ router.post('/token', verify, (req, res) => {
   res.send(tokenGenerator(req));
 });
 
-router.post('/voice', twilio.webhook({ validate: true }), (req, res) => {
+router.post('/voice', twilio.webhook( process.env.TWILIO_AUTH_TOKEN, { validate: true, url: 'https://vanilla-twilio.herokuapp.com/twilio/voice'}), (req, res) => {
   res.set('Content-Type', 'text/xml');
   res.send(voiceResponse(req));
 });
