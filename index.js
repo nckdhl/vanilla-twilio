@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'https://friendly-raman-a250a4.netlify.com',
+  origin: 'https://vanillavoip.com',
   credentials: true
 }
 
