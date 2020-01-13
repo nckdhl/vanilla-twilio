@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 const corsOptions = {
-  origin: ['https://vanillavoip.com','http://localhost:5500'],
+  origin: ['https://vanillavoip.com','http://127.0.0.1:5500'],
   credentials: true
 }
 
