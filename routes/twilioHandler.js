@@ -76,7 +76,7 @@ exports.forwardResponse = function forwardResponse(req) {
     callerId: caller,
   });
 
-  dial.number(+12896893069);
+  dial.number(process.env.TWILIO_FORWARD_ID);
 
   return twiml.toString();
 }
