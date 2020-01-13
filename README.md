@@ -1,10 +1,10 @@
 # Twilio Programmable Voice Client Back-end for Node.js
 
-This application was originally a fork of the official Twilio repo [client-quickstart-node](https://github.com/TwilioDevEd/client-quickstart-node)
-I made significant changes such as removing the front-end, adding a POSTGRES db and using Node.js purely as a separate REST API to control calling
+This application was originally a fork of the Twilio quickstart repo [client-quickstart-node](https://github.com/TwilioDevEd/client-quickstart-node).
+I made significant changes such as removing the front-end, adding a Postgres db and using Node.js purely as a separate REST API to control calling
 through the TWIML programmable voice API.
 
-The front-end repo is located here [vanilla-twilio-client](https://github.com/nckdhl/vanilla-twilio-client)
+The front-end repo is located here [vanilla-twilio-client](https://github.com/nckdhl/vanilla-twilio-client).
 
 I created this app to use personally in order to buy phone numbers in other countries and make/receive calls using local numbers.
 
@@ -22,5 +22,6 @@ I created this app to use personally in order to buy phone numbers in other coun
 
 ***
 
-This app is currently hosted at vanillavoip.com. 
+This app is currently hosted at [vanillavoip.com](https://vanillavoip.com). 
+
 Account creation upon invitation is not yet possible but will be as soon as I figure out how to integrate that securely with the Twilio Account and Application API. 
