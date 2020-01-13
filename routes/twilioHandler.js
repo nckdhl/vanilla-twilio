@@ -32,7 +32,7 @@ exports.voiceResponse = function voiceResponse(req) {
   const dial = twiml.dial({
     callerId: config.callerId,
     timeout: 20,
-    action: 'http://480f6f8d.ngrok.io/twilio/forward',
+    action: 'https://vanillavoip.com/twilio/forward',
     method: 'POST' 
   });
 
