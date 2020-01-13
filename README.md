@@ -1,80 +1,26 @@
-<a href="https://www.twilio.com">
-  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
-</a>
+# Twilio Programmable Voice Client Back-end for Node.js
 
-# Twilio Client Quickstart for Node.js
-[![Build Status](https://travis-ci.org/TwilioDevEd/client-quickstart-node.svg?branch=master)](https://travis-ci.org/TwilioDevEd/client-quickstart-node)
+This application was originally a fork of the official Twilio repo [client-quickstart-node](https://github.com/TwilioDevEd/client-quickstart-node)
+I made significant changes such as removing the front-end, adding a POSTGRES db and using Node.js purely as a separate REST API to control calling
+through the TWIML programmable voice API.
 
+The front-end repo is located here [vanilla-twilio-client](https://github.com/nckdhl/vanilla-twilio-client)
 
-This application should give you a ready-made starting point for writing your
-own voice apps with Twilio Client. Before we begin, we need to collect
-all the config values we need to run the application:
+I created this app to use personally in order to buy phone numbers in other countries and make/receive calls using local numbers.
 
-| Config&nbsp;Value  | Description |
-| :-------------  |:------------- |
-Account&nbsp;SID | Your primary Twilio account identifier - find this [in the console here](https://www.twilio.com/console).
-Auth&nbsp;Token | Used to authenticate - [just like the above, you'll find this here](https://www.twilio.com/console).
-TwiML&nbsp;App&nbsp;SID | The TwiML application with a voice URL configured to access your server running this app - create one [in the console here](https://www.twilio.com//console/phone-numbers/dev-tools/twiml-apps). Also, you will need to configure the Voice "REQUEST URL" on the TwiML app once you've got your server up and running.
-Twilio&nbsp;Phone&nbsp;# | A Twilio phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164) - you can [get one here](https://www.twilio.com/console/phone-numbers/incoming)
+### Some of the other functionality added:
 
-## Setting Up The Node.js Application
+1. Login and registration routes
+2. JWT auth. protection of certain routes
+3. Call forwarding to hard-coded number when browser client is offline
+4. Postgresql database integration for storage of user data / authentication
 
-1. Create a configuration file for your application:
+### Future functionality to add:
 
-   ```bash
-   cp .env.example .env
-   ```
+1. Account registration and automatic creation of TWIML apps
+2. Remove hard-coded configurations and add phone number options to UI
 
-1. Edit `.env` with the four configuration parameters we gathered from above.
+***
 
-1. Next, we need to install our dependencies from npm:
-
-   ```bash
-   npm install
-   ```
-
-1. Now we should be all set! Run the application using `npm`.
-
-   ```bash
-   npm start
-   ```
-
-   Your application should now be running at http://localhost:3000.
-   Leave the server running and continue on in another command window.
-
-1. [Download and install ngrok](https://ngrok.com/download)
-
-1. Run ngrok:
-
-   ```bash
-   ngrok http 3000
-   ```
-
-1. When ngrok starts up, it will assign a unique URL to your tunnel.
-   It might be something like `https://asdf456.ngrok.io`. Take note of this.
-   Note you **must** use the https URL, otherwise some browsers will block
-   microphone access.
-
-1. [Configure your TwiML app](https://www.twilio.com/console/phone-numbers/dev-tools/twiml-apps)'s
-Voice "REQUEST URL" to be your ngrok URL plus `/voice`. For example:
-
-   ![screenshot of twiml app](https://s3.amazonaws.com/com.twilio.prod.twilio-docs/images/TwilioClientRequestUrl.original.png)
-
-   You should now be ready to rock! Make some phone calls.
-   Open it on another device and call yourself. Note that Twilio Client requires
-   WebRTC enabled browsers, so Edge and Internet Explorer will not work for
-   testing. We'd recommend Google Chrome or Mozilla Firefox instead.
-
-   ![screenshot of chat app](https://s3.amazonaws.com/com.twilio.prod.twilio-docs/images/TwilioClientQuickstart.original.png)
-
-### Run tests
-
-```bash
-npm test
-```
-
-## Meta
-
-* No warranty expressed or implied. Software is as is. Diggity.
-* [MIT License](http://www.opensource.org/licenses/mit-license.html)
-* Lovingly crafted by Twilio Developer Education.
+This app is currently hosted at vanillavoip.com. 
+Account creation upon invitation is not yet possible but will be as soon as I figure out how to integrate that securely with the Twilio Account and Application API. 
